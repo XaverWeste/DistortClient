@@ -1,11 +1,7 @@
 package my_project.control;
 
 import KAGO_framework.control.ViewController;
-import KAGO_framework.model.abitur.datenstrukturen.Queue;
-import my_project.model.Ball;
-import my_project.view.InputManager;
-
-import java.awt.event.MouseEvent;
+import my_project.model.User;
 
 /**
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern. Die updateProgram - Methode wird
@@ -17,8 +13,10 @@ public class ProgramController {
 
 
     // Referenzen
-    private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
-
+    private ViewController viewController;
+    private User user;
+    private String ServerIP;
+    private int ServerPort;
     /**
      * Konstruktor
      * Dieser legt das Objekt der Klasse ProgramController an, das den Programmfluss steuert.
@@ -35,10 +33,41 @@ public class ProgramController {
      * Sie erstellt die leeren Datenstrukturen, zu Beginn nur eine Queue
      */
     public void startProgram() {
-        // Erstelle ein Objekt der Klasse Ball und lasse es zeichnen
-        Ball ball1 = new Ball(150,150);
-        viewController.draw(ball1);
+        user = new User(ServerIP,ServerPort,this);
 
+    }
+
+    public void sendMessage(String pMessage){
+        String[] m = pMessage.split(" ");
+
+        if(m[0].equals("/setname")){    //Setname
+            if(m[1].matches("^[a-zA-Z]$+") && m.length == 2){
+                user.send(m[0] + " " + m[1]);
+                user.setName(m[1]);
+            }else{
+                System.out.println("Invalid name");
+            }
+
+        }else if(m[0].equals("/join") && m.length == 1){    //Join
+            user.send(m[0]);
+
+        }else if(m[0].equals("/leave") && m.length == 1){    //Leave
+            user.send(m[0]);
+
+        }else if(m[0].equals("/whisper") && m.length > 2){   //Whisper
+            String message = "";
+            for(int i = 2; i < m.length; i++){
+                message += m[i] + " ";
+            }
+            user.send(m[0] + " " + m[1] + " " + message);
+
+        }else{   // Message
+            user.send(pMessage);
+        }
+    }
+
+    public void processMessage(String pMessage){
+        System.out.println(pMessage);
     }
 
     /**
