@@ -42,27 +42,27 @@ public class ProgramController {
 
         if(m[0].equals("/setname")){    //Setname
             if(m[1].matches("^[a-zA-Z]$+") && m.length == 2){
-                user.send(m[0] + " " + m[1]);
+                user.send("SETNAME_"+m[1]);
                 user.setName(m[1]);
             }else{
-                System.out.println("Invalid name");
+                System.out.println("INVALID_NAME");
             }
 
         }else if(m[0].equals("/join") && m.length == 1){    //Join
-            user.send(m[0]);
+            user.send("JOIN");
 
         }else if(m[0].equals("/leave") && m.length == 1){    //Leave
-            user.send(m[0]);
+            user.send("LEAVE");
 
         }else if(m[0].equals("/whisper") && m.length > 2){   //Whisper
-            String message = "";
+            String message = "WHISPER_"+m[1]+"_";
             for(int i = 2; i < m.length; i++){
                 message += m[i] + " ";
             }
-            user.send(m[0] + " " + m[1] + " " + message);
+            user.send(message);
 
         }else{   // Message
-            user.send(pMessage);
+            user.send("MESSAGE_" + pMessage);
         }
     }
 
