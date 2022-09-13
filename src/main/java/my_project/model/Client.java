@@ -1,12 +1,10 @@
 package my_project.model;
 
-import KAGO_framework.model.abitur.netz.Client;
-
-public class User extends Client {
+public class Client extends KAGO_framework.model.abitur.netz.Client {
 
     private String name;
 
-    public User(String pServerIP, int pServerPort) {
+    public Client(String pServerIP, int pServerPort) {
         super(pServerIP, pServerPort);
     }
 

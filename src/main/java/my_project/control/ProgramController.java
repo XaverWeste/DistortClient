@@ -1,7 +1,7 @@
 package my_project.control;
 
 import KAGO_framework.control.ViewController;
-import my_project.model.User;
+import my_project.model.Client;
 
 public class ProgramController {
 
@@ -12,7 +12,7 @@ public class ProgramController {
     }
 
     public void startProgram() {
-        new User("", 0);
+        new Client("", 0);
 
     }
 
