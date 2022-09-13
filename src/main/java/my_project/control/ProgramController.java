@@ -2,6 +2,9 @@ package my_project.control;
 
 import KAGO_framework.control.ViewController;
 import my_project.model.User;
+import my_project.view.GUI;
+
+import javax.swing.*;
 
 /**
  * Ein Objekt der Klasse ProgramController dient dazu das Programm zu steuern. Die updateProgram - Methode wird
@@ -15,6 +18,8 @@ public class ProgramController {
     // Referenzen
     private ViewController viewController;
     private User user;
+    private JFrame myFrame;
+    private GUI gui;
     private String ServerIP;
     private int ServerPort;
     /**
@@ -34,7 +39,11 @@ public class ProgramController {
      */
     public void startProgram() {
         user = new User(ServerIP,ServerPort,this);
-
+        myFrame = new JFrame("Distort");
+        gui = new GUI();
+        myFrame.setBounds(400,200,1000,800);
+        myFrame.setContentPane(gui.getPanel());
+        myFrame.setVisible(true);
     }
 
     public void sendMessage(String pMessage){
