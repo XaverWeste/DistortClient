@@ -1,7 +1,6 @@
 package my_project.control;
 
 import KAGO_framework.control.ViewController;
-import my_project.model.User;
 import my_project.view.GUI;
 
 import javax.swing.*;
@@ -9,12 +8,10 @@ import my_project.model.Client;
 
 public class ProgramController {
 
-    private ViewController viewController;
-    private User user;
     private JFrame myFrame;
     private GUI gui;
-    private String ServerIP;
-    private int ServerPort;
+    private Client c;
+
     /**
      * Konstruktor
      * Dieser legt das Objekt der Klasse ProgramController an, das den Programmfluss steuert.
@@ -24,20 +21,16 @@ public class ProgramController {
      */
 
     public ProgramController(ViewController viewController){
-        this.viewController = viewController;
+
     }
 
     public void startProgram() {
-        user = new User(ServerIP,ServerPort,this);
+        c=new Client("",0);
         myFrame = new JFrame("Distort");
         gui = new GUI();
         myFrame.setBounds(400,200,1000,800);
         myFrame.setContentPane(gui.getPanel());
         myFrame.setVisible(true);
-    }
-
-    public void sendMessage(String pMessage){
-        new Client("", 0);
     }
 
     public void updateProgram(double dt){
