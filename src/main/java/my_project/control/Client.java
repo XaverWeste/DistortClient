@@ -13,8 +13,14 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
 
     @Override
     public void processMessage(String pMessage) {
-        //TODO react
-        gui.showText(pMessage);
+        if(gui!=null) {
+            String[] args=pMessage.split("_");
+            if(args[0].equals("MESSAGE")&&args.length>2){
+                gui.showText(args[1]+" : "+args[2]);
+            }else if(args[0].equals("DM")&&args.length>3){
+                gui.showText(args[2]+" : "+args[3]);
+            }
+        }else System.err.println("GUI ist null");
     }
 
     public void setName(String name) {
@@ -32,7 +38,7 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
                 if (m[1].matches("^[a-zA-Z]+$") && m.length == 2) {
                     send("SETNAME_" + m[1]);
                     setName(m[1]);
-                }else System.out.println("INVALID_NAME");
+                }else System.err.println("INVALID_NAME");
             }
             case "/join" -> send("JOIN");
             case "/leave" -> send("LEAVE");
@@ -45,5 +51,9 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
             }
             default -> send("MESSAGE_" + message);
         }
+    }
+
+    public void setGui(GUI gui){
+        this.gui=gui;
     }
 }

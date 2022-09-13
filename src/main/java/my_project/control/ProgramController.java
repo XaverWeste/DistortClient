@@ -19,6 +19,7 @@ public class ProgramController {
         c = new Client("",0);
         myFrame = new JFrame("Distort");
         gui = new GUI(c);
+        c.setGui(gui);
         myFrame.setBounds(400,200,1000,800);
         myFrame.setContentPane(gui.getPanel());
         myFrame.setVisible(true);
