@@ -4,7 +4,6 @@ import KAGO_framework.control.ViewController;
 import my_project.view.GUI;
 
 import javax.swing.*;
-import my_project.model.Client;
 
 public class ProgramController {
 
@@ -17,9 +16,9 @@ public class ProgramController {
     }
 
     public void startProgram() {
-        c=new Client("",0);
+        c = new Client("",0);
         myFrame = new JFrame("Distort");
-        gui = new GUI();
+        gui = new GUI(c);
         myFrame.setBounds(400,200,1000,800);
         myFrame.setContentPane(gui.getPanel());
         myFrame.setVisible(true);

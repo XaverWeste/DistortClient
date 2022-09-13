@@ -1,8 +1,11 @@
-package my_project.model;
+package my_project.control;
+
+import my_project.view.GUI;
 
 public class Client extends KAGO_framework.model.abitur.netz.Client {
 
     private String name;
+    private GUI gui;
 
     public Client(String pServerIP, int pServerPort) {
         super(pServerIP, pServerPort);
@@ -11,6 +14,7 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
     @Override
     public void processMessage(String pMessage) {
         //TODO react
+        gui.showText(pMessage);
     }
 
     public void setName(String name) {
