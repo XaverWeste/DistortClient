@@ -9,6 +9,7 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
 
     public Client(String pServerIP, int pServerPort) {
         super(pServerIP, pServerPort);
+        System.out.println(isConnected());
     }
 
     @Override
@@ -19,6 +20,8 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
                 gui.showText(args[1]+" : "+args[2]);
             }else if(args[0].equals("DM")&&args.length>3){
                 gui.showText("Msg from" + args[2]+" : "+args[3]);
+            }else{
+                System.err.println(pMessage);
             }
         }else System.err.println("GUI ist null");
     }

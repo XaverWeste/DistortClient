@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GUI {
-    private Client client;
+
     private JPanel chatPanel;
     private JTextArea chatArea;
     private JButton sendButton;
