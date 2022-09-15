@@ -18,7 +18,7 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
             if(args[0].equals("MESSAGE")&&args.length>2){
                 gui.showText(args[1]+" : "+args[2]);
             }else if(args[0].equals("DM")&&args.length>3){
-                gui.showText(args[2]+" : "+args[3]);
+                gui.showText("Msg from" + args[2]+" : "+args[3]);
             }
         }else System.err.println("GUI ist null");
     }
@@ -38,18 +38,29 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
                 if (m[1].matches("^[a-zA-Z]+$") && m.length == 2) {
                     send("SETNAME_" + m[1]);
                     setName(m[1]);
+                    gui.showText("Name set to: " + m[1]);
                 }else System.err.println("INVALID_NAME");
             }
-            case "/join" -> send("JOIN");
-            case "/leave" -> send("LEAVE");
-            case "/wisper" -> {
+            case "/join" -> {
+                send("JOIN");
+                gui.showText("You joined");
+            }
+            case "/leave" -> {
+                send("LEAVE");
+                gui.showText("You left");
+            }
+            case "/whisper" -> {
                 if(m.length>2) {
-                    StringBuilder sb = new StringBuilder("WHISPER_" + m[1] + "_");
+                    StringBuilder sb = new StringBuilder();
                     for (int i = 2; i < m.length; i++) sb.append(m[i]).append(" ");
-                    send(sb.toString());
+                    send("WHISPER_" + m[1] + "_" + sb.toString());
+                    gui.showText("DM to " + m[1] +": " + sb.toString());
                 }
             }
-            default -> send("MESSAGE_" + message);
+            default -> {
+                send("MESSAGE_" + message);
+                gui.showText("You: " + message);
+            }
         }
     }
 

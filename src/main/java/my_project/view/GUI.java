@@ -18,6 +18,7 @@ public class GUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 client.sendMessage(userText.getText());
+                userText.setText("");
             }
         });
     }
