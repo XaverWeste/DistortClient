@@ -7,18 +7,15 @@ import javax.swing.*;
 
 public class ProgramController {
 
-    private JFrame myFrame;
-    private GUI gui;
-    private Client c;
-
     public ProgramController(ViewController viewController){
 
     }
 
     public void startProgram() {
-        c = new Client("",0);
-        myFrame = new JFrame("Distort");
-        gui = new GUI(c);
+        System.out.println("abc");
+        Client c = new Client("10.17.128.78", 1110);
+        JFrame myFrame = new JFrame("Distort");
+        GUI gui = new GUI(c);
         c.setGui(gui);
         myFrame.setBounds(400,200,1000,800);
         myFrame.setContentPane(gui.getPanel());
