@@ -13,7 +13,7 @@ public class ProgramController {
 
     public void startProgram() {
         System.out.println("abc");
-        Client c = new Client("10.17.128.78", 1110);
+        Client c = new Client("10.17.128.71", 6969);
         JFrame myFrame = new JFrame("Distort");
         GUI gui = new GUI(c);
         c.setGui(gui);

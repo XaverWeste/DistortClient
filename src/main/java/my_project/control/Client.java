@@ -19,7 +19,7 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
             if(args[0].equals("MESSAGE")&&args.length>2){
                 gui.showText(args[1]+" : "+args[2]);
             }else if(args[0].equals("DM")&&args.length>3){
-                gui.showText("Msg from" + args[2]+" : "+args[3]);
+                gui.showText("Msg from " + args[2]+" : "+args[3]);
             }else{
                 System.err.println(pMessage);
             }
@@ -62,7 +62,6 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
             }
             default -> {
                 send("MESSAGE_" + message);
-                gui.showText("You: " + message);
             }
         }
     }
