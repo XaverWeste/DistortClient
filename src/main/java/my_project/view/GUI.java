@@ -12,15 +12,23 @@ public class GUI {
     private JTextArea chatArea;
     private JButton sendButton;
     private JTextField userText;
+    private Client client;
 
     public GUI(Client client){
+        this.client = client;
         sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                client.sendMessage(userText.getText());
-                userText.setText("");
+                send();
             }
         });
+    }
+
+    public void send(){
+        if(!userText.getText().equals("")) {
+            client.sendMessage(userText.getText());
+            userText.setText("");
+        }
     }
 
     public JPanel getPanel(){
