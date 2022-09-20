@@ -2,7 +2,6 @@ package my_project.control;
 
 import KAGO_framework.control.ViewController;
 import my_project.view.GUI;
-import my_project.view.KeyboardInput;
 
 import javax.swing.*;
 
@@ -24,7 +23,6 @@ public class ProgramController {
         myFrame.setContentPane(gui.getPanel());
         myFrame.setVisible(true);
         myFrame.setDefaultCloseOperation(myFrame.EXIT_ON_CLOSE);
-        new KeyboardInput(this, viewController);
     }
 
     public void send(){
