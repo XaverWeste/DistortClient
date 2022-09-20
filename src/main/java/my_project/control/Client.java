@@ -79,7 +79,6 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
             }
             default -> {
                 send("MESSAGE_" + message);
-                gui.showText(message);
             }
         }
     }
