@@ -64,10 +64,10 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
                 }else System.err.println("INVALID_NAME");
             }
             case "/join" -> {
-                gui.showText("You joined");
+                send("JOIN");
             }
             case "/leave" -> {
-                gui.showText("You left");
+                send("LEAVE");
             }
             case "/whisper" -> {
                 if(m.length>2) {
