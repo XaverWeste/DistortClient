@@ -30,4 +30,8 @@ public class ProgramController {
     public void send(){
         gui.send();
     }
+
+    public void updateProgram(double dt){
+
+    }
 }
