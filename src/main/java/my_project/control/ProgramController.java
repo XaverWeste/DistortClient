@@ -16,7 +16,7 @@ public class ProgramController {
     }
 
     public void startProgram() {
-        Client c = new Client("10.17.128.71", 6969);
+        Client c = new Client();
         JFrame myFrame = new JFrame("Distort");
         gui = new GUI(c);
         c.setGui(gui);

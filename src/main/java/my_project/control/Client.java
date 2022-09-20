@@ -8,7 +8,7 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
     private GUI gui;
     private String lastWhisper;
 
-    public Client(String pServerIP, int pServerPort) {
+    public Client() {
         super("10.17.128.78", 6969);
         System.out.println(isConnected());
     }
@@ -49,10 +49,6 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
         this.name = name;
     }
 
-    public String getName(){
-        return name;
-    }
-
     public void sendMessage(String message){
         String[] m = message.split(" ");
         switch(m[0]) {
@@ -62,23 +58,17 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
                     setName(m[1]);
                 }else System.err.println("INVALID_NAME");
             }
-            case "/join" -> {
-                send("JOIN");
-            }
-            case "/leave" -> {
-                send("LEAVE");
-            }
+            case "/join" -> send("JOIN");
+            case "/leave" -> send("LEAVE");
             case "/whisper" -> {
                 if(m.length>2) {
                     StringBuilder sb = new StringBuilder();
                     for (int i = 2; i < m.length; i++) sb.append(m[i]).append(" ");
-                    lastWhisper = m[1] + ": " + sb.toString();
-                    send("WHISPER_" + m[1] + "_" + sb.toString());
+                    lastWhisper = m[1] + ": " + sb;
+                    send("WHISPER_" + m[1] + "_" + sb);
                 }
             }
-            default -> {
-                send("MESSAGE_" + message);
-            }
+            default -> send("MESSAGE_" + message);
         }
     }
 
