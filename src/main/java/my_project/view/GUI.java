@@ -15,6 +15,7 @@ public class GUI {
     public GUI(Client client){
         this.client = client;
         sendButton.addActionListener(e -> send());
+        userText.addActionListener(e -> send());
     }
 
     public void send(){
