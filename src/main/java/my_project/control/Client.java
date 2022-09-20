@@ -9,7 +9,7 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
     private String lastWhisper;
 
     public Client(String pServerIP, int pServerPort) {
-        super(pServerIP, pServerPort);
+        super("10.17.128.78", 6969);
         System.out.println(isConnected());
     }
 

@@ -9,7 +9,7 @@ import javax.swing.*;
 public class ProgramController {
 
     private GUI gui;
-    private ViewController viewController;
+    private final ViewController viewController;
 
     public ProgramController(ViewController viewController){
         this.viewController = viewController;

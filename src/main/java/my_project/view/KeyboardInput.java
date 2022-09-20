@@ -7,17 +7,11 @@ import java.awt.event.KeyEvent;
 
 public class KeyboardInput extends InteractiveGraphicalObject {
 
-    private ProgramController programController;
+    private final ProgramController programController;
 
     public KeyboardInput(ProgramController programController, ViewController viewController) {
         this.programController = programController;
         viewController.register(this);
-    }
-
-
-    @Override
-    public void keyPressed(int key) {
-
     }
 
     @Override
