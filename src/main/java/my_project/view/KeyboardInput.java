@@ -16,11 +16,7 @@ public class KeyboardInput extends InteractiveGraphicalObject {
 
     @Override
     public void keyReleased(int key) {
-        if (key == KeyEvent.VK_ENTER) {
-            programController.send();
-            System.out.println("1");
-        }
-        System.out.println("1");
+        if (key == KeyEvent.VK_ENTER) programController.send();
     }
 }
 

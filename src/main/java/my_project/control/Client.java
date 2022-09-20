@@ -60,7 +60,6 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
                 if (m[1].matches("^[a-zA-Z]+$") && m.length == 2) {
                     send("SETNAME_" + m[1]);
                     setName(m[1]);
-                    gui.showText("Name set to: " + m[1]);
                 }else System.err.println("INVALID_NAME");
             }
             case "/join" -> {
@@ -79,7 +78,6 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
             }
             default -> {
                 send("MESSAGE_" + message);
-                gui.showText(message);
             }
         }
     }
