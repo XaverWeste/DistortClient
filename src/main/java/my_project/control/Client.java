@@ -19,12 +19,20 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
             String[] args=pMessage.split("_");
             switch(args[0]){
                 case "MESSAGE" -> {
-                    if (args.length > 2) gui.showText(args[1] + " : " + args[2]);
+                    if (args.length > 2){
+                        StringBuilder sb=new StringBuilder();
+                        String[] m=args[2].split(" ");
+                        for (String s : m) sb.append(CryptionHandler.decrypt(s)).append(" ");
+                        gui.showText(args[1] + " : " + sb);
+                    }
                 }
                 case "DM" -> {
                     if(args.length>3) {
                         if(args[1].equals("RECIEVED")) {
-                            gui.showText("Msg from " + args[2] + " : " + args[3]);
+                            StringBuilder sb=new StringBuilder();
+                            String[] m=args[3].split(" ");
+                            for (String s : m) sb.append(CryptionHandler.decrypt(s)).append(" ");
+                            gui.showText(args[2] + " : " + sb);
                         }else if(args[1].equals("SENT")){
                             gui.showText("Msg sent to " + lastWhisper);
                         }
@@ -65,12 +73,16 @@ public class Client extends KAGO_framework.model.abitur.netz.Client {
             case "/whisper" -> {
                 if(m.length>2) {
                     StringBuilder sb = new StringBuilder();
-                    for (int i = 2; i < m.length; i++) sb.append(m[i]).append(" ");
+                    for (int i = 2; i < m.length; i++) sb.append(CryptionHandler.encrypt(m[i])).append(" ");
                     lastWhisper = m[1] + ": " + sb;
                     send("WHISPER_" + m[1] + "_" + sb);
                 }
             }
-            default -> send("MESSAGE_" + message);
+            default ->{
+                StringBuilder sb=new StringBuilder();
+                for(String s:m) sb.append(CryptionHandler.encrypt(s)).append(" ");
+                send("MESSAGE_" + sb);
+            }
         }
     }
 
