@@ -2,27 +2,21 @@ package my_project.control;
 
 public class CryptionHandler {
 
+    private static final String key="test";
 
     public static String encrypt(String string){
-        return crypt(string.toCharArray(),"test".toCharArray(),true);
+        return crypt(string.toCharArray(),key.toCharArray(),true);
     }
 
     public static String decrypt(String string){
-        return crypt(string.toCharArray(),"test".toCharArray(),false);
+        return crypt(string.toCharArray(),key.toCharArray(),false);
     }
 
-    public static String crypt(char[] plain, char[] key, boolean encrypt) {
+    private static String crypt(char[] plain, char[] key, boolean encrypt){
         char[] output = new char[plain.length];
-        for (int i = 0; i < plain.length; i++) {
-            if (encrypt) {
-                int result = (plain[i] + key[i % key.length]-194) % 26 ;
-                output[i] = (char) (result+97);
-            }else{
-                int result;
-                if (plain[i] - key[i % key.length] < 0) result = (plain[i]- key[i % key.length]+130) %26 + 97;
-                else result = (plain[i] - key[i % key.length]) % 26 +97;
-                output[i] = (char) result;
-            }
+        for(int i = 0; i < plain.length; i++){
+            if(encrypt) output[i] = (char) (((plain[i] + key[i % key.length] - 194) % 26)+97);
+            else output[i] = (char) ((plain[i] - key[i % key.length] + 26) % 26 + 97);
         }
         return String.valueOf(output);
     }
